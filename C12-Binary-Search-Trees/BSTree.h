@@ -158,7 +158,12 @@ inline void BSTree<type>::remove(const type& a_data)
         std::cerr << "a_data is not in the tree!\n";
         return;
     }
-    
+/*
+*	删除节点有两个孩子节点的情况可以归于只有一个孩子的情况，如下可以找到要删除节点ｘ的后继xSucc，
+*	并将其data赋予ｘ，则相当于只需删除节点xSucc,而节点xSucc无左孩子，可归于只有一个孩子的情况
+*	将subTree指向左子树或右子树，考虑ｘ为根节点的情况，如果parent为NULL，则直接将root指向subTree
+*	查看ｘ子树是parent的左子树还是右子树，并将subTree相应地作为parent的左子树或右子树
+*/
     if (x->left != NULL && x->right != NULL)//节点有两个子女
     {
         //查找x的中续后继节点及其双亲节点
